@@ -258,6 +258,8 @@ require('lazy').setup({
     },
   },
 
+ 
+
   -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
   --
   -- This is often very useful to both group configuration, as well as handle
@@ -406,6 +408,13 @@ require('lazy').setup({
         builtin.find_files { cwd = vim.fn.stdpath 'config' }
       end, { desc = '[S]earch [N]eovim files' })
     end,
+  },
+  
+  -- ts lsp
+  {
+    "pmizio/typescript-tools.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    opts = {},
   },
 
   { -- LSP Configuration & Plugins
@@ -578,6 +587,15 @@ require('lazy').setup({
         -- tsserver = {},
         --
 
+
+        biome = {
+          cmd= { "biome", "lsp-proxy" },
+          filetypes = { "javascript", "javascriptreact", "json", "jsonc", "typescript", "typescript.tsx", "typescriptreact", "astro", "svelte", "vue", "css" },
+          -- root_dir: root_pattern('biome.json', 'biome.jsonc')
+
+        },
+
+
         lua_ls = {
           -- cmd = {...},
           -- filetypes = { ...},
@@ -657,7 +675,7 @@ require('lazy').setup({
         --
         -- You can use a sub-list to tell conform to run *until* a formatter
         -- is found.
-        -- javascript = { { "prettierd", "prettier" } },
+        javascript = { { "prettier" } },
       },
     },
   },
